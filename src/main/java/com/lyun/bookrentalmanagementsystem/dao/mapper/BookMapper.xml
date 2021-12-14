@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lyun.bookrentalmanagementsystem.dao.BookDao">
-    <select id="findAll" resultType="Book">SELECT * FROM book</select>>
+    <select id="findAll" resultType="Book">SELECT * FROM book</select>
+    <select id="get" resultType="Book">
+        SELECT * FROM book
+        <trim prefix="where" prefixOverrides="and|or">
+            <if test="author!=null and author!=''">
+                and author=#{author}
+            </if>
+            <if test="press!=null and press!=''">
+                and press=#{press}
+            </if>
+            <if test="type!=null and type!=''">
+                and type=#{type}
+            </if>
+            <if test="pubdate!=null and pubdate!=''">
+                and pubdate=#{pubdate}
+            </if>
+            <if test="lang!=null and lang!=''">
+                and lang=#{lang}
+            </if>
+        </trim>
+    </select>
 </mapper>
