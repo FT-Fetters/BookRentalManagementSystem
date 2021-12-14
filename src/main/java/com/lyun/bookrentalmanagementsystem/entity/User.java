@@ -7,7 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 
 @Data
-public class User {
+public class  User {
     public static class Token {
         /**
          * tokens列表
