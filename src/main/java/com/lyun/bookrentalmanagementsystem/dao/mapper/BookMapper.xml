@@ -29,4 +29,6 @@
     <select id="getPubdateClass" resultType="java.time.Year">SELECT DISTINCT pubdate FROM book</select>
     <select id="getLangClass" resultType="String">SELECT DISTINCT lang FROM book</select>
     <insert id="newBook">INSERT INTO book (name,author,press,type,pubdate,lang) VALUES (#{name},#{author},#{press},#{type},#{pubdate},#{lang})</insert>
+    <delete id="deleteByName">DELETE FROM book WHERE name=#{name}</delete>
+    <update id="updateBook">UPDATE book SET name=#{name},author=#{author},press=#{press},type=#{type},pubdate=#{pubfate},lang=#{lang}</update>
 </mapper>

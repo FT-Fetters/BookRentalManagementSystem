@@ -40,8 +40,23 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
+    public Book getByName(String name) {
+        return bookDao.getByName(name);
+    }
+
+    @Override
     public void newBook(String name, String author,String press, String type, String pubdate, String lang) {
         bookDao.newBook(name, author, press, type, pubdate, lang);
+    }
+
+    @Override
+    public void deleteByName(String name) {
+        bookDao.deleteByName(name);
+    }
+
+    @Override
+    public void updateBook(String name, String author, String press, String type, String pubdate, String lang) {
+        bookDao.updateBook(name, author, press, type, pubdate, lang);
     }
 
 

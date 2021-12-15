@@ -14,7 +14,8 @@ public interface BookService {
                    String pubdate,
                    String lang);
     JSONObject getBookClass();
-
+    Book getByName(String name);
     void newBook(String name,String author,String press,String type,String pubdate,String lang);
-
+    void deleteByName(String name);
+    void updateBook(String name,String author,String press,String type,String pubdate,String lang);
 }

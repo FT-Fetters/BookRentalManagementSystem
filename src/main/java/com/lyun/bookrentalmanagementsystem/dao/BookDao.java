@@ -2,7 +2,6 @@ package com.lyun.bookrentalmanagementsystem.dao;
 
 import com.lyun.bookrentalmanagementsystem.entity.Book;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import java.time.Year;
 import java.util.List;
@@ -17,4 +16,6 @@ public interface BookDao extends BaseDao<Book>{
     List<String> getLangClass();
     void newBook(String name, String author,String press, String type, String pubdate, String lang);
     Book getByName(String name);
+    void deleteByName(String name);
+    void updateBook(String name, String author,String press, String type, String pubdate, String lang);
 }
