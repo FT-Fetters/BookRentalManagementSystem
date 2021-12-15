@@ -1,6 +1,8 @@
 package com.lyun.bookrentalmanagementsystem.utils;
 
+import lombok.SneakyThrows;
 import org.springframework.boot.system.ApplicationHome;
+import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 
@@ -23,5 +25,15 @@ public class PathTools {
     public static String getImagePath(){
         File jarFile = new File(getJarFilePath());
         return jarFile.getParent()+"\\src\\main\\resources\\image";
+    }
+
+    @SneakyThrows
+    public static String getStaticPath(){
+        return ResourceUtils.getFile("classpath:static").getAbsolutePath();
+    }
+
+    @SneakyThrows
+    public static File getLangMapFile(){
+        return ResourceUtils.getFile("classpath:static/langMap.txt");
     }
 }

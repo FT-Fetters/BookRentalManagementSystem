@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.*;
 import java.util.List;
 
 @RequestMapping("/user")
@@ -35,6 +36,26 @@ public class UserApi {
         }else {
             LogUtils.log("login fail","login",true,request);
             return new ResultBody<>(false,501,"error password or username is not exist");
+        }
+    }
+
+    @RequestMapping(value = "/register",method = RequestMethod.POST)
+    public Object register(@RequestBody JSONObject data, HttpServletResponse response, HttpServletRequest request){
+        String username = data.getString("username");
+        String password = data.getString("password");
+        if (username != null && password != null){
+            if(userService.getByUsername(username)!=null){
+                if (password.length()>=6){
+                    userService.newUser(username,password);
+                    return new ResultBody<>(true,200,null);
+                }else {
+                    return new ResultBody<>(false,502,"password is too short");
+                }
+            }else {
+                return new ResultBody<>(false,501,"username already exists");
+            }
+        }else {
+            return new ResultBody<>(false,500,"missing parameter");
         }
     }
 }

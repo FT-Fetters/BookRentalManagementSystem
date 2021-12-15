@@ -1,5 +1,6 @@
 package com.lyun.bookrentalmanagementsystem.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.lyun.bookrentalmanagementsystem.dao.BookDao;
 import com.lyun.bookrentalmanagementsystem.entity.Book;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,4 +27,22 @@ public class BookServiceImpl implements BookService{
         if (lang.equals("-"))lang="";
         return bookDao.get(author, press, type, pubdate, lang);
     }
+
+    @Override
+    public JSONObject getBookClass() {
+        JSONObject res = new JSONObject();
+        res.put("author",bookDao.getAuthorClass());
+        res.put("press",bookDao.getPressClass());
+        res.put("type",bookDao.getTypeClass());
+        res.put("pubdate",bookDao.getPubdateClass());
+        res.put("lang",bookDao.getLangClass());
+        return res;
+    }
+
+    @Override
+    public void newBook(String name, String author,String press, String type, String pubdate, String lang) {
+        bookDao.newBook(name, author, press, type, pubdate, lang);
+    }
+
+
 }

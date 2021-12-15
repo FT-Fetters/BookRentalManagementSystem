@@ -3,4 +3,5 @@
 <mapper namespace="com.lyun.bookrentalmanagementsystem.dao.UserDao">
     <select id="findAll" resultType="User">SELECT * FROM user</select>
     <select id="getByUsername" resultType="User">SELECT * FROM user WHERE username=#{username}</select>
+    <insert id="newUser">INSERT INTO user (username,password) VALUES (#{username},#{password})</insert>
 </mapper>

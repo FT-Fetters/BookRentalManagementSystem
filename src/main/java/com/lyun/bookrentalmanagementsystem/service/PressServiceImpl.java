@@ -19,4 +19,9 @@ public class PressServiceImpl implements PressService{
     public List<Press> findAll() {
         return pressDao.findAll();
     }
+
+    @Override
+    public Press getByName(String name) {
+        return pressDao.getByName(name);
+    }
 }

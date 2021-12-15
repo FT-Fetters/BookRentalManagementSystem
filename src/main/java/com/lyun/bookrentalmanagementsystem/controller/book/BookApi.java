@@ -34,4 +34,9 @@ public class BookApi {
         return new ResultBody<>(true,200,bookList);
     }
 
+    @RequestMapping(value = "/class",method = RequestMethod.GET)
+    public ResultBody<?> getBookClass(){
+        return new ResultBody<>(true,200,bookService.getBookClass());
+    }
+
 }

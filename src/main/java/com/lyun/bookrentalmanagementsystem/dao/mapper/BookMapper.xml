@@ -22,4 +22,11 @@
             </if>
         </trim>
     </select>
+    <select id="getByName" resultType="Book">SELECT * FROM book WHERE name=#{name}</select>
+    <select id="getAuthorClass" resultType="String">SELECT DISTINCT author FROM book</select>
+    <select id="getPressClass" resultType="String">SELECT DISTINCT press FROM book</select>
+    <select id="getTypeClass" resultType="String">SELECT DISTINCT type FROM book</select>
+    <select id="getPubdateClass" resultType="java.time.Year">SELECT DISTINCT pubdate FROM book</select>
+    <select id="getLangClass" resultType="String">SELECT DISTINCT lang FROM book</select>
+    <insert id="newBook">INSERT INTO book (name,author,press,type,pubdate,lang) VALUES (#{name},#{author},#{press},#{type},#{pubdate},#{lang})</insert>
 </mapper>

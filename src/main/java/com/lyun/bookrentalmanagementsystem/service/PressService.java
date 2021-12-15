@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface PressService {
     List<Press> findAll();
+    Press getByName(String name);
 }

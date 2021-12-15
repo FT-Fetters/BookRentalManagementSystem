@@ -1,5 +1,6 @@
 package com.lyun.bookrentalmanagementsystem.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.lyun.bookrentalmanagementsystem.entity.Book;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -12,5 +13,8 @@ public interface BookService {
                    String type,
                    String pubdate,
                    String lang);
+    JSONObject getBookClass();
+
+    void newBook(String name,String author,String press,String type,String pubdate,String lang);
 
 }

@@ -37,4 +37,10 @@ public class UserServiceImpl implements UserService{
     public User getByUsername(String username) {
         return userDao.getByUsername(username);
     }
+
+    @Override
+    public void newUser(String username, String password) {
+        password = DigestUtils.md5DigestAsHex(password.getBytes(StandardCharsets.UTF_8));
+        userDao.newUser(username,password);
+    }
 }

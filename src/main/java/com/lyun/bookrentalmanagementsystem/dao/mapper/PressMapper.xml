@@ -2,4 +2,5 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lyun.bookrentalmanagementsystem.dao.PressDao">
     <select id="findAll" resultType="Press">SELECT * FROM press</select>
+    <select id="getByName" resultType="Press">SELECT * FROM press WHERE name=#{name}</select>
 </mapper>

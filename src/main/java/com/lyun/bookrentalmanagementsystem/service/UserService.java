@@ -8,4 +8,5 @@ public interface UserService {
     List<User> findAll();
     boolean check(String username,String password);
     User getByUsername(String username);
+    void newUser(String username,String password);
 }
