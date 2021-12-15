@@ -13,4 +13,9 @@ public class UserUtils {
         int userPower = userService.getByUsername(username).getPower();
         return userPower >= power;
     }
+
+    public static String getUsername(UserService userService,HttpServletRequest request){
+        String token = CookieUtils.getCookie(request,"token");
+        return User.Token.tokens.get(token);
+    }
 }
