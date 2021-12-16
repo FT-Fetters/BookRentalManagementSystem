@@ -11,11 +11,20 @@ public class UserUtils {
         String token = CookieUtils.getCookie(request,"token");
         String username = User.Token.tokens.get(token);
         int userPower = userService.getByUsername(username).getPower();
-        return userPower >= power;
+        return userPower < power;
     }
 
     public static String getUsername(UserService userService,HttpServletRequest request){
         String token = CookieUtils.getCookie(request,"token");
         return User.Token.tokens.get(token);
+    }
+
+    public static int getUserId(UserService userService,HttpServletRequest request){
+        String token = CookieUtils.getCookie(request,"token");
+        return userService.getByUsername(User.Token.tokens.get(token)).getId();
+    }
+
+    public static boolean isLogin(HttpServletRequest request){
+        return User.Token.tokens.containsKey(CookieUtils.getCookie(request,"token"));
     }
 }

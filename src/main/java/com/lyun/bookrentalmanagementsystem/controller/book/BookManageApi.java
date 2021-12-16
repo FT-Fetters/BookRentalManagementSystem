@@ -49,7 +49,7 @@ public class BookManageApi {
                           @RequestParam String lang,
                           HttpServletRequest request,
                           HttpServletResponse response){
-        if (!UserUtils.checkPower(userService,request,5)){
+        if (!UserUtils.checkPower(userService, request, 5)){
             return new ResultBody<>(false,502,"permission denied");
         }
         if (pressService.getByName(press)==null){
@@ -71,7 +71,7 @@ public class BookManageApi {
     public Object deleteBook(@RequestParam String name,
                              HttpServletRequest request,
                              HttpServletResponse response){
-        if (!UserUtils.checkPower(userService,request,5)){
+        if (!UserUtils.checkPower(userService, request, 5)){
             return new ResultBody<>(false,500,"permission denied");
         }
         if (bookService.getByName(name)==null){
@@ -99,7 +99,7 @@ public class BookManageApi {
                              @RequestParam String lang,
                              HttpServletRequest request,
                              HttpServletResponse response){
-        if (!UserUtils.checkPower(userService,request,5)){
+        if (!UserUtils.checkPower(userService, request, 5)){
             return new ResultBody<>(false,502,"permission denied");
         }
         if (pressService.getByName(press)==null){

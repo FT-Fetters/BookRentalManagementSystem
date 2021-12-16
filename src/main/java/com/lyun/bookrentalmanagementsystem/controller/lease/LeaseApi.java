@@ -26,16 +26,35 @@ public class LeaseApi {
     @Autowired
     LeaseService leaseService;
 
+    /**
+     * 通过用户名称获取租借记录
+     * @param username 用户名
+     */
     @RequestMapping(value = "/get/user",method = RequestMethod.GET)
     public Object getInfByUser(@RequestParam String username,
                                HttpServletRequest request,
                                HttpServletResponse response){
-        if (!UserUtils.checkPower(userService,request,5)){
+        if (!UserUtils.isLogin(request)){
+            return new ResultBody<>(false,500,"not login");
+        }
+        if (!UserUtils.checkPower(userService, request, 5)){
             if (!username.equals(UserUtils.getUsername(userService,request))){
                 return new ResultBody<>(false,500,"not allow");
             }
         }
         List<Lease> leaseList = leaseService.getByUser(username);
+        return new ResultBody<>(true,200,leaseList);
+    }
+
+
+    @RequestMapping("/get/book")
+    public Object getInfByBook(@RequestParam String bookName,
+                               HttpServletRequest request,
+                               HttpServletResponse response){
+        if (UserUtils.checkPower(userService, request, 5)){
+            return new ResultBody<>(false,500,"permission denied");
+        }
+        List<Lease> leaseList = leaseService.getByBook(bookName);
         return new ResultBody<>(true,200,leaseList);
     }
 
