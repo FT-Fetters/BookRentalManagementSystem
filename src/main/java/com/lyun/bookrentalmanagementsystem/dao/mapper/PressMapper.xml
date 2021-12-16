@@ -2,5 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lyun.bookrentalmanagementsystem.dao.PressDao">
     <select id="findAll" resultType="Press">SELECT * FROM press</select>
+
     <select id="getByName" resultType="Press">SELECT * FROM press WHERE name=#{name}</select>
+    <insert id="newPress">INSERT INTO press(name,address,phone) VALUE (#{name},#{address,#{phone})</insert>
+    <delete id="deleteByName">DELETE FROM book WHERE name=#{name}</delete>
+    <update id="updatePress">UPDATE press SET name=#{name},address=#{address},phone=#{phone}</update>
 </mapper>

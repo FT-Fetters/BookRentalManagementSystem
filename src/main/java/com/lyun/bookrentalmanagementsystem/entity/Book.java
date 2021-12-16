@@ -13,4 +13,5 @@ public class Book {
     private String type;
     private Year pubdate;
     private String lang;
+
 }

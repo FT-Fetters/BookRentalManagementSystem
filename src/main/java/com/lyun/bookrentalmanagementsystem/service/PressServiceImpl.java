@@ -21,7 +21,26 @@ public class PressServiceImpl implements PressService{
     }
 
     @Override
+    public List<Press> get(String name) {
+        if (name.equals("-"))name="";
+        return pressDao.get(name); }
+
+
+
+    @Override
     public Press getByName(String name) {
-        return pressDao.getByName(name);
-    }
+        return pressDao.getByName(name); }
+
+    @Override
+    public void updatePress(String name,String address,String phone){
+        pressDao.updatePress(name,address,phone);}
+
+    @Override
+    public void deleteByName(String name){
+        pressDao.deleteByName(name); }
+
+    @Override
+    public void newPress(String name,String address,String phone){
+        pressDao.newPress(name,address,phone); }
+
 }
