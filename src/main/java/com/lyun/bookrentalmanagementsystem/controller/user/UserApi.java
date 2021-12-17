@@ -54,7 +54,7 @@ public class UserApi {
         String username = data.getString("username");
         String password = data.getString("password");
         if (username != null && password != null){
-            if(userService.getByUsername(username)!=null){
+            if(userService.getByUsername(username)==null){
                 if (password.length()>=6){
                     userService.newUser(username,password);
                     return new ResultBody<>(true,200,null);

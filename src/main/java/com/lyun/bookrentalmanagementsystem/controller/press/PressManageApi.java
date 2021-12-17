@@ -34,7 +34,6 @@ public class PressManageApi {
      * @param address 出版社地址
      * @param phone 出版社电话
       */
-
     @RequestMapping(value ="/new",method = RequestMethod.POST)
     public Object newPress(@RequestParam String name,
                            @RequestParam String address,
@@ -44,6 +43,9 @@ public class PressManageApi {
         if (!UserUtils.checkPower(userService,request,5)){
             return new ResultBody<>(false,502,"permission denied");
         }
+        if (pressService.getByName(name) != null){
+            return new ResultBody<>(false,501,"already exist");
+        }
         pressService.newPress(name, address,phone);
         return new ResultBody<>(true,200,null);
     }
@@ -52,7 +54,6 @@ public class PressManageApi {
      * 删除出版社
      * @param name 出版社名字
      */
-
     @RequestMapping(value = "/delete",method = RequestMethod.POST)
     public Object deletePress(@RequestParam String name,
                               HttpServletRequest request,
@@ -63,12 +64,12 @@ public class PressManageApi {
         pressService.deleteByName(name);
         return new ResultBody<>(true,200,null);
     }
+
     /**
      * @param name 出版社名字
      * @param address 出版社地址
      * @param phone 出版社电话
      */
-
     @RequestMapping(value = "/update",method = RequestMethod.POST)
     public Object updatePress(@RequestParam String name,
                               @RequestParam String address,

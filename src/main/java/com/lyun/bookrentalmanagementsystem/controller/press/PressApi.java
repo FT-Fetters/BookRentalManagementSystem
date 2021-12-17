@@ -28,7 +28,7 @@ public class PressApi {
 
     @RequestMapping(value = "/get",method = RequestMethod.POST)
     public ResultBody<?> get(@RequestParam String name,
-                             HttpServletRequest requese,
+                             HttpServletRequest request,
                              HttpServletResponse response){
         List<Press> pressList = pressService.get(name);
         return new ResultBody<>(true,200,pressList);
