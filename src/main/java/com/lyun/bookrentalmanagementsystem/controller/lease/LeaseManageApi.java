@@ -6,6 +6,7 @@ import com.lyun.bookrentalmanagementsystem.utils.ResultBody;
 import com.lyun.bookrentalmanagementsystem.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,6 +43,26 @@ public class LeaseManageApi {
         }
         leaseService.updateDate(bd,rd,id);
         return new ResultBody<>(true,200,null);
+    }
+
+    @RequestMapping(value = "/new",method = RequestMethod.POST)
+    public Object newLease(@RequestParam int userid,
+                           @RequestParam int bookid,
+                           @RequestParam String date,
+                           @RequestParam String retdate,
+                           HttpServletRequest request,
+                           HttpServletResponse response){
+        if (UserUtils.checkPower(userService, request, 5)){
+            return new ResultBody<>(false,502,"permission denied");
+        }
+        if (leaseService.getById(bookid) != null){
+            return new ResultBody<>(false,501,"already exist");
+        }
+        Date bd = Date.valueOf(date);
+        Date rd = Date.valueOf(retdate);
+        leaseService.newLease(userid,bookid,bd,rd);
+        return new ResultBody<>(true,200,null);
+
     }
 
 }

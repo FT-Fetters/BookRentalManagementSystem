@@ -51,4 +51,9 @@ public class LeaseServiceImpl implements LeaseService{
     public void updateDate(Date date, Date retdate, int id) {
         leaseDao.updateDate(date, retdate, id);
     }
+
+    @Override
+    public void newLease(int userid,int bookid,Date date,Date retdate){
+        leaseDao.newLease(userid,bookid,date,retdate);
+    }
 }
