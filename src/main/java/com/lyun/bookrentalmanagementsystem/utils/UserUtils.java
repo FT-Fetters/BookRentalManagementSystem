@@ -10,6 +10,7 @@ public class UserUtils {
     public static boolean checkPower(UserService userService, HttpServletRequest request,int power){
         String token = CookieUtils.getCookie(request,"token");
         String username = User.Token.tokens.get(token);
+        if (userService.getByUsername(username) == null)return false;
         int userPower = userService.getByUsername(username).getPower();
         return userPower < power;
     }

@@ -42,6 +42,15 @@ public class BookApi {
         return new ResultBody<>(true,200,bookList);
     }
 
+    @RequestMapping(value = "/get/name",method = RequestMethod.GET)
+    public Object getByName(@RequestParam String name){
+        if (bookService.getByName(name) != null){
+            return new ResultBody<>(true,200,bookService.getByName(name));
+        }else {
+            return new ResultBody<>(false,500,"not found book");
+        }
+    }
+
     @SneakyThrows
     @RequestMapping(value = "/cover",method = RequestMethod.GET)
     public Object getBookCover(@RequestParam String name){
@@ -49,7 +58,8 @@ public class BookApi {
             return new ResultBody<>(false,500,"unknown book");
         }
         File coverDir = new File(PathTools.getRunPath() + "/cover");
-        if (coverDir.exists() || coverDir.mkdirs()){
+        if (!coverDir.exists()){
+            coverDir.mkdirs();
             return new ResultBody<>(false,501,"not have cover");
         }
         String filename = DigestUtils.md5DigestAsHex(name.getBytes(StandardCharsets.UTF_8));
