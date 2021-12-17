@@ -47,15 +47,17 @@ public class LeaseApi {
     }
 
 
-    @RequestMapping("/get/book")
+    @RequestMapping(value = "/get/book",method = RequestMethod.GET)
     public Object getInfByBook(@RequestParam String bookName,
                                HttpServletRequest request,
                                HttpServletResponse response){
-        if (UserUtils.checkPower(userService, request, 5)){
+        if (!UserUtils.checkPower(userService, request, 5)){
             return new ResultBody<>(false,500,"permission denied");
         }
         List<Lease> leaseList = leaseService.getByBook(bookName);
         return new ResultBody<>(true,200,leaseList);
     }
+
+
 
 }

@@ -13,4 +13,5 @@ public interface LeaseDao extends BaseDao<Lease>{
     List<Lease> getByBook(int bookId);
     Lease getById(int id);
     void updateDate(Date date,Date retdate,int id);
+    void newLease(int userid,int bookid,Date date,Date retdate);
 }
